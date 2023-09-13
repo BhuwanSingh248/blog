@@ -15,3 +15,15 @@ export const addLike = async (req:Request, res:Response) => {
     }
 };
 
+export const getLike = async (req:Request, res:Response) => {
+    try {
+        const likes = await Like.find();
+        res.json(likes);
+    } catch (error) {
+        console.error("Error fetching likes :", error)
+        res.status(500).json({
+            error:'Internal server error'
+        })
+    }
+};
+

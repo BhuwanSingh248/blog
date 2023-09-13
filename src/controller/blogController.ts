@@ -14,3 +14,16 @@ export const createBlog = async (req:Request, res:Response) => {
         );
     }
 }
+
+export const getBlog = async (req:Request, res:Response) => {
+    try {
+        res.json(
+            await Blog.find()
+            );
+    } catch (error) {
+        console.error("Error fetching blogs :", error)
+        res.status(500).json({
+            error:'Internal server error'
+        })
+    }
+}

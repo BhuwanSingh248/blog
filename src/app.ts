@@ -7,11 +7,11 @@ import blogRoutes from './routes/blogRoutes';
 import authRouter from './routes/authRouter'
 import { json } from 'body-parser';
 import authenticationToken from './middleware/authMiddleware';
-
+import swaggerDocs from './utils/swagger';
 const listEndpoints = require('express-list-endpoints')
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 connectDB();
 app.use(json());
@@ -27,5 +27,6 @@ console.log(routesList);
 
 app.listen(PORT, () =>
 {
-    console.log(`server listening at port ${PORT}`)
+    console.log(`server listening at port ${PORT}`);
+    swaggerDocs(app, PORT)
 });

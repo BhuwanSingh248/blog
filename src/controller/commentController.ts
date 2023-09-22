@@ -6,7 +6,6 @@ export const addComments = async(req:Request, res:Response) => {
     try {
         const {blogId, text, user} = req.body;
         const blog = await Blog.findById(blogId);
-
         if (! blog) {
             return res.status(404).json({
                 error:'Blog not found'
